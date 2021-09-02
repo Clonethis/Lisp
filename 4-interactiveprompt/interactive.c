@@ -1,8 +1,14 @@
 #include <stdio.h>
+/*Dunno yet what it is*/
+#include <stlib.h>
 
+#include <editline/readline.h>
+#include <editline/history.h>
+
+/*on linux machines arrows for moving in row write out chars instead of moving try using 'editline' library for solve this issue*/
 static char input[2048];
 int main (int arga, char** argv){
-	puts ("Lispy Version 0.0.0.1");
+	puts ("Lispy Version 0.0.0.2");
 	puts ("Press Ctrl+c to Exit");
 	/*infinite loop*/
 	while(1){
