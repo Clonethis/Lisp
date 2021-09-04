@@ -1,5 +1,5 @@
 #include "mpc.h"
-int main(int arga,char** argv){
+int main(int argc,char** argv){
 	/*Building parser adjectives to recognize descriptions */
 	mpc_parser_t* Adjective = mpc_or(4,
 	mpc_sym("wow"),mpc_sym("many"),
@@ -11,9 +11,9 @@ int main(int arga,char** argv){
 	mpc_sym("hello"),mpc_sym("build"),
 	mpc_sym("c")
 	);
-	mpc_parser_t* Phares = mpc_and(2,mpcf_strfold,
+	mpc_parser_t* Phrase = mpc_and(2,mpcf_strfold,
 	Adjective , Noun, free);
-	mpc_parser_t* Doge = mpc_many)mpcf_strfold, Phrase);
+	mpc_parser_t* Doge = mpc_many(mpcf_strfold, Phrase);
 	/* Do some parsing here*/
 	mpc_delete(Doge);
 	return 0;
