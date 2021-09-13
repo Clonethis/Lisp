@@ -3,6 +3,16 @@
 
 /*seen only in file in which it is declared*/
 static char buffer[2048];
+int number_of_nodes(mpc_ast_t* t){
+	if(t-> children_num==0){return 1;}
+	if(t-> children_num>=1){
+		int total =1;
+		for(int i = 0; i< t-> children_num; i++){
+				total = total + number_of_nodes(t->children[i]);
+		}
+		return total;
+		}
+}
 char* readline(char* prompt){
 	fputs(prompt, stdout);
 	fgets(buffer, 2048, stdin);
@@ -37,7 +47,7 @@ long eval_op(long x, char* op, long y){
 
 long eval(mpc_ast_t* t){
 /* 	foo->bar == (*foo).bar	*/
-
+printf("Number of nodes %d \n",number_of_nodes(t));
 	/*If tagged as number return it derectly.*/
 	/*comparing strings if equals; return pointer or something like this*/
 	/*So if tag is "number" if statement == true*/
@@ -54,7 +64,9 @@ long eval(mpc_ast_t* t){
 	/*iterate the remaining children and combining. */
 	int i = 3;
 	while (strstr(t->children[i]->tag,"expr")){
+		printf("Children %s  ",t->children[i]);
 		x=eval_op(x,op,eval(t->children[i]));
+		printf("while loop x eval %d  ",x);
 		i++; 
 	}
 	return x;
